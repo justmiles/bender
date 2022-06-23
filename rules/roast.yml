@@ -1,0 +1,20 @@
+# meta
+name: roast
+active: true
+
+# trigger and args
+hear: /(roast|insult) (?P<name>\S+)/
+
+# actions
+actions:
+  - name: roast
+    type: exec
+    cmd: config/scripts/roast.sh ${name}
+
+# response
+format_output: "${_exec_output}"
+direct_message_only: false
+
+# help
+help_text: roast <name>
+include_in_help: true

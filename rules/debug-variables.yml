@@ -1,0 +1,27 @@
+# meta
+name: debug-variables
+active: true
+
+# trigger and args
+respond: /debug variables/
+
+# response
+format_output: >-
+  • `_user.email`: ${_user.email}
+
+  • `_user.name`: ${_user.name}
+
+  • `_raw_user_input`: ${_raw_user_input}
+
+  • `_channel.id`: ${_channel.id} 
+
+  • `_channel.name`: ${_channel.name} 
+
+  • `_is_thread_message`: ${_is_thread_message} 
+
+  • `_channel.name`: ${_channel.name} 
+
+  • `_source.timestamp`: ${_source.timestamp} 
+
+direct_message_only: false
+include_in_help: false

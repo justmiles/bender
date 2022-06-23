@@ -1,0 +1,26 @@
+# meta
+name: praise
+active: true
+
+# trigger and args
+hear: /praise (?P<name>\S+)/
+
+# actions
+actions:
+  - name: praise
+    type: GET
+    url: http://api.icndb.com/jokes/random
+    query_data:
+      limitTo: "[nerdy]"
+      firstName: ""
+      lastName: "${name}"
+    expose_json_fields:
+      joke: '.value.joke'
+
+# response
+format_output: "${joke}"
+direct_message_only: false
+
+# help
+help_text: praise <name>
+include_in_help: true
