@@ -1,0 +1,20 @@
+# meta
+name: games-show
+active: true
+
+# trigger and args
+respond: /stop game (?P<game>\S+)/
+
+# actions
+actions:
+  - name: stop a game
+    type: exec
+    cmd: config/scripts/gamectl.sh --game ${game} stop
+
+# response
+format_output: "```${_exec_output}```"
+direct_message_only: false
+
+# help
+help_text: stop game <name> - shutdown a game server
+include_in_help: true

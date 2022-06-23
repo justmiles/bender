@@ -1,0 +1,20 @@
+# meta
+name: games-list
+active: true
+
+# trigger and args
+respond: show games
+
+# actions
+actions:
+  - name: list-games
+    type: exec
+    cmd: config/scripts/gamectl.sh list
+
+# response
+format_output: "```${_exec_output}```"
+direct_message_only: false
+
+# help
+help_text: show games - returns a list of game servers and their status
+include_in_help: true

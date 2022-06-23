@@ -1,0 +1,21 @@
+# metadata (for logging)
+name: bender # EDIT this (name of your bot)
+
+## discord
+chat_application: discord
+discord_token: ${DISCORD_TOKEN}
+discord_server_id: ${DISCORD_SERVER_ID}
+
+# system
+cli: false # leave this to be true as default
+
+scheduler: false
+
+debug: true
+
+log_json: true
+
+interactive_components: true
+
+# for prometheus metrics capabilities; enables prometheus metrics on localhost port 8080
+metrics: false

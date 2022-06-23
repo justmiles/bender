@@ -1,0 +1,20 @@
+# meta
+name: games-status
+active: true
+
+# trigger and args
+respond: /show (?P<game>\S+) status/
+
+# actions
+actions:
+  - name: show game status
+    type: exec
+    cmd: config/scripts/gamectl.sh --game ${game} status
+
+# response
+format_output: "```${_exec_output}```"
+direct_message_only: false
+
+# help
+help_text: show <name> status - show detailed status of a game server
+include_in_help: true

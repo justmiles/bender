@@ -1,0 +1,23 @@
+# meta
+name: games-restart
+active: true
+
+# trigger and args
+respond: /restart (?P<game>\S+)/
+
+# actions
+actions:
+  - name: restart a game
+    type: exec
+    cmd: config/scripts/gamectl.sh --game ${game} restart
+
+# response
+format_output: "```${_exec_output}```"
+direct_message_only: false
+
+# help
+help_text: restart <name> - restart a game server
+include_in_help: true
+
+allow_usergroups:
+  - Admin
