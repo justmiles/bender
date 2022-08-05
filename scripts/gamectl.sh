@@ -28,7 +28,11 @@ case $1 in
     nomad job status -namespace=games
     ;;
   stop)
-    nomad job stop -namespace=games "$GAME"
+    nomad job scale -namespace=games "$GAME" "$GAME" 0
+    ;;
+    ;;
+  start)
+    nomad job scale -namespace=games "$GAME" "$GAME" 1
     ;;
   status)
     nomad job status -namespace=games "$GAME"

@@ -1,0 +1,20 @@
+# meta
+name: games-start
+active: true
+
+# trigger and args
+respond: /start game (?P<game>\S+)/
+
+# actions
+actions:
+  - name: start a game
+    type: exec
+    cmd: config/scripts/gamectl.sh --game ${game} start
+
+# response
+format_output: "```${_exec_output}```"
+direct_message_only: false
+
+# help
+help_text: start game <name> - start a game server
+include_in_help: true
