@@ -30,9 +30,8 @@ case $1 in
   stop)
     nomad job scale -namespace=games "$GAME" "$GAME" 0
     ;;
-    ;;
   start)
-    nomad job scale -namespace=games "$GAME" "$GAME" 1
+    nomad job scale -namespace=games -detach "$GAME" "$GAME" 1 && echo "Job is starting"
     ;;
   status)
     nomad job status -namespace=games "$GAME"
