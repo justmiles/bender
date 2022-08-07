@@ -22,7 +22,6 @@ done
 
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
-
 case $1 in
   list)
     nomad job status -namespace=games
@@ -35,6 +34,11 @@ case $1 in
     ;;
   status)
     nomad job status -namespace=games "$GAME"
+    case "$GAME" in
+      ark)
+        nomad exec -namespace games -job ark arkmanager status
+        ;;
+    esac
     ;;
   restart)
     ALLOC_ID=$(nomad job status -namespace=games "$GAME" | grep -A3 Allocations | tail -1 | awk '{print $1}')
@@ -48,3 +52,4 @@ case $1 in
     shift # past argument
     ;;
 esac
+
