@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+function no-color() {
+  sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g"
+}
+
 POSITIONAL_ARGS=()
 
 while [[ $# -gt 0 ]]; do
@@ -36,7 +40,7 @@ case $1 in
     nomad job status -namespace=games "$GAME"
     case "$GAME" in
       ark)
-        nomad exec -namespace games -job ark arkmanager status
+        nomad exec -namespace games -job ark arkmanager status | no-color
         ;;
     esac
     ;;
