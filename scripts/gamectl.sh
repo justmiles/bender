@@ -35,8 +35,8 @@ case $1 in
     nomad job scale -namespace=games -detach "$GAME" "$GAME" 1 && echo "Job is starting"
     ;;
   status)
-    SHORT=" -$2"
-    nomad job status"$SHORT" -namespace=games "$GAME"
+    SHORT="-$2"
+    nomad job status "$SHORT" -namespace=games "$GAME"
     case "$GAME" in
       ark)
         nomad exec -namespace games -job ark arkmanager status | no-color
