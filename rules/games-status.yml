@@ -3,18 +3,18 @@ name: games-status
 active: true
 
 # trigger and args
-respond: /show (?P<game>\S+) status/
+respond: /show (?P<game>\S+) status (?P<short>\S+)/
 
 # actions
 actions:
   - name: show game status
     type: exec
-    cmd: config/scripts/gamectl.sh --game ${game} status
+    cmd: config/scripts/gamectl.sh --game ${game} status ${short}
 
 # response
 format_output: "```${_exec_output}```"
 direct_message_only: false
 
 # help
-help_text: show <name> status - show detailed status of a game server
+help_text: show <name> status [-short] - show detailed/shortened status of a game server
 include_in_help: true
