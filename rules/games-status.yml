@@ -3,7 +3,7 @@ name: games-status
 active: true
 
 # trigger and args
-respond: /show game (?P<game>\S+) status/
+respond: /show (?P<game>\S+) status/
 
 # actions
 actions:
