@@ -26,7 +26,17 @@ done
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 case $1 in
   list)
-    nomad job status -namespace=games
+    nomad job status -namespace=games | grep -v "^ID" | while read GAME_ID GAME_TYPE GAME_PRIORITY GAME_STATUS GAME_LAUNCH_DATE; do
+      if [ "$GAME_STATUS" == "dead" ]; then
+        GAME_STATUS=off
+        echo "$GAME_ID ($GAME_STATUS)"
+        continue
+      fi
+
+      ALLOC_ID=$(nomad job status -namespace=games "$GAME_ID" | grep -A3 Allocations | tail -1 | awk '{print $1}')
+      RUN_TIME=$(nomad alloc status --namespace=games $ALLOC_ID | grep "^Modified" | awk '{print $3}')
+      echo "$GAME_ID (running for $RUN_TIME)"
+    done
     ;;
   stop)
     nomad job scale -namespace=games "$GAME" "$GAME" 0
