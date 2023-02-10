@@ -7,7 +7,7 @@ discord_token: ${DISCORD_TOKEN}
 discord_server_id: ${DISCORD_SERVER_ID}
 
 # system
-cli: false # leave this to be true as default
+cli: true # leave this to be true as default
 
 scheduler: false
 
