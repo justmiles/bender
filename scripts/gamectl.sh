@@ -35,12 +35,16 @@ case $1 in
     nomad job scale -namespace=games -detach "$GAME" "$GAME" 1 && echo "Job is starting"
     ;;
   status)
-    set -x
-    if [ "$2" == "short" ]; then
-      nomad job status -short -namespace=games "$GAME"
-    else 
-      nomad job status -namespace=games "$GAME"
-    fi
+    nomad job status -short -namespace=games "$GAME" \
+      | grep -v "^ID" \
+      | grep -v "^Name" \
+      | grep -v "^Datacenters" \
+      | grep -v "^Submit" \
+      | grep -v "^Type" \
+      | grep -v "^Priority" \
+      | grep -v "^Namespace" \
+      | grep -v "^Periodic" \
+      | grep -v "^Parameterized"
     case "$GAME" in
       ark)
         nomad exec -namespace games -job ark arkmanager status | no-color
